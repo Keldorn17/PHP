@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLS Rendering</title>
+</head>
+<body>
+    <h1>szerver</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Név</th>
+                <th>Szak</th>
+                <th>Születési éve</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const getData = async (url) =>{
+            const response = await fetch(url)
+            const data = await response.json()
+            render(data)
+        }
+        const render = (data) =>{
+            console.log(data)
+            document.querySelector('tbody').innerHTML = data.map(obj => `
+                <tr>
+                    <td>${obj.nev}</td>
+                    <td>${obj.szak}</td>
+                    <td>${obj.szev}</td>    
+                </tr>
+            `).join('')
+        }
+
+        getData('../szerver/read.php')
+    </script>
+</body>
+</html>
