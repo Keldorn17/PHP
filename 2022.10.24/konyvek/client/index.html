@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        select{
+            max-width: 30%;
+            margin: 5px 0px;
+        }
+        button{
+            color: white;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <select id="tema" class="custom-select" onchange="filter(this)">
+                <option value="0">összes témakör</option>
+            </select>
+            <select id="szerzo" class="custom-select" onchange="filter(this)">
+                <option value="0">összes szerző</option>
+            </select>
+        </div>
+        <div class="row">
+            <table class="table table-striped">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th><button id="id" onclick="sort(this)" class="bg-dark">Id</button></th>
+                        <th><button id="szerzo" onclick="sort(this)" class="bg-dark">Szerző</button></th>
+                        <th><button id="cim" onclick="sort(this)" class="bg-dark">Cím</button></th>
+                        <th><button id="ev" onclick="sort(this)" class="bg-dark">Kiadás éve</button></thid=>
+                        <th><button id="tema" onclick="sort(this)" class="bg-dark">Témakör</button></thid=>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const getData = async (url,fcName) =>{
+            const response = await fetch(url)
+            const data = await response.json()
+            fcName(data)
+        }
+        const renderTbl = (data) =>{
+            document.querySelector('tbody').innerHTML = data.map(obj =>`
+            <tr class="text-center">
+                <td>${obj.id}</td>
+                <td>${obj.szerzo}</td>
+                <td>${obj.cim}</td>
+                <td>${obj.ev}</td>
+                <td>${obj.tema}</td>
+            </tr>
+            `).join('')
+        }
+        const renderOptTema = (data) =>{
+            document.querySelector('#tema').innerHTML += data.map(obj => `
+                <option value="${obj.tema}">${obj.tema}</option>
+            `).join('')
+        }
+        const renderOptSzerzo = (data) =>{
+            document.querySelector('#szerzo').innerHTML += data.map(obj => `
+                <option value="${obj.szerzo}">${obj.szerzo}</option>
+            `).join('')
+        }
+        getData('../server/read.php',renderTbl)
+        getData('../server/readTema.php',renderOptTema)
+        getData('../server/readSzerzo.php',renderOptSzerzo)
+
+        const filter = (obj) =>{
+            obj.value == 0 ? getData('../server/read.php',renderTbl) : getData(`../server/filter.php?${obj.id}=${obj.value}`,renderTbl)
+        }
+
+        const sort = (obj) =>{
+            getData(`../server/sort.php?${obj.id}`,renderTbl)
+        }
+
+    </script>
+</body>
+</html>
