@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>POST</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <form action="" class="form">
+                <div class="form-group">
+                    <label for="kiado">Kiadó:</label>
+                    <input type="text" name="kiado" id="kiado" class="form-group">
+                </div>
+                <div class="form-group">
+                    <label for="hely">Szekhely:</label>
+                    <input type="text" name="hely" id="hely" class="form-group">
+                </div>
+                <input type="button" value="mentés" class="btn btn-primary" onclick="save()">
+            </form>
+        </div>
+        <div class="msg"></div>
+    </div>
+
+    <script>
+        const save = async () =>{
+            const myFormData = new FormData(document.querySelector('form'))
+            /*for(let obj of myFormData)
+                console.log(obj)*/
+            const config = {
+                method: 'POST',
+                body: myFormData
+            }
+            const response = await fetch('../server/insertKiado.php', config)
+            const data = await response.text()
+            document.querySelector('.msg').innerHTML = data
+        }
+
+    </script>
+</body>
+</html>
