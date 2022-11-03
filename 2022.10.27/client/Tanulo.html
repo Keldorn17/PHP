@@ -44,7 +44,7 @@
         getData('../server/TanuloOptRead.php',renderOpt)
 
         const renderTbl = (obj) =>{
-            if(obj.id != 0) getData(`../server/TanuloRead.php?osztaly=${obj.value}`,makeTable)
+            getData(`../server/TanuloRead.php?osztaly=${obj.value}`,makeTable)
         }
         const makeTable = (data) =>{
             document.querySelector('tbody').innerHTML = data.map(obj => `
