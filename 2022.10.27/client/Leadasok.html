@@ -17,6 +17,14 @@
         .bold{
             font-weight: 700;
         }
+        .deleteItems{
+            cursor: pointer;
+            color: red;
+        }
+        .updateItems{
+            cursor: pointer;
+            color: lightgreen;
+        }
     </style>
 </head>
 <body>
@@ -40,12 +48,16 @@
                         <tr>
                             <th>Azonosító</th>
                             <th>Név</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Összesen</td>
                             <td>0</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -69,15 +81,17 @@
         }
         getData('../server/readDiakokOpt.php',makeOpt)
 
-        const makeTbl = () =>{
+        const makeTbl = (nothing = null) =>{
             getData(`../server/readDiakSum.php?nev=${getOptValue()}`,addSum)
             document.querySelector('#msg').innerHTML = `a kiválasztott tanuló <span class="bold">${getOptValue()}</span> által leadott papír.`
         }
         const createTbl = async (data) =>{
             document.querySelector('tbody').innerHTML = data.map(obj => `
-            <tr>
+            <tr id="${obj.sorsz}">
                 <td>${obj.idopont}</td>
-                <td>${obj.mennyiseg}</td>
+                <td contentEditable="true" id="${obj.sorsz}td">${obj.mennyiseg}</td>
+                <td onclick="deleteItem(this)" class="deleteItems">Delete</td>
+                <td class="updateItems" onclick="updateItem(this)">Update</td>
             </tr>
             `).join('')
         }
@@ -87,16 +101,29 @@
             <tr>
                 <td>Összesen</td>
                 <td>0</td>
+                <td></td>
+                <td></td>
             </tr>
             ` : `
             <tr>
                 <td>Összesen</td>
                 <td>${obj.sum}</td>
+                <td></td>
+                <td></td>
             </tr>
             `).join('')
         }
         const getOptValue = () =>{
             return document.querySelector('select').value
+        }
+        const deleteItem = (obj) =>{
+            let sorszam = obj.parentNode.id
+            getData(`../server/deleteItem.php?nev=${getOptValue()}&sorszam=${sorszam}`,makeTbl)
+        }
+        const updateItem = (obj) =>{
+            let sorszam = obj.parentNode.id
+            let updateValue = document.getElementById(`${sorszam}td`).textContent
+            getData(`../server/updateItem.php?sorsz=${sorszam}&mennyiseg=${updateValue}&nev=${getOptValue()}`,makeTbl)
         }
 
     </script>
