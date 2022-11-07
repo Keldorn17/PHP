@@ -70,9 +70,8 @@
         getData('../server/readDiakokOpt.php',makeOpt)
 
         const makeTbl = () =>{
-            let currentOpt = document.querySelector('select').value
-            getData(`../server/readDiakSum.php?nev=${currentOpt}`,addSum)
-            document.querySelector('#msg').innerHTML = `a kiválasztott tanuló <span class="bold">${currentOpt}</span> által leadott papír.`
+            getData(`../server/readDiakSum.php?nev=${getOptValue()}`,addSum)
+            document.querySelector('#msg').innerHTML = `a kiválasztott tanuló <span class="bold">${getOptValue()}</span> által leadott papír.`
         }
         const createTbl = async (data) =>{
             document.querySelector('tbody').innerHTML = data.map(obj => `
@@ -83,8 +82,7 @@
             `).join('')
         }
         const addSum = async (data) =>{
-            let currentOpt = document.querySelector('select').value
-            await getData(`../server/readDiakTbl.php?nev=${currentOpt}`,createTbl)
+            await getData(`../server/readDiakTbl.php?nev=${getOptValue()}`,createTbl)
             document.querySelector('tbody').innerHTML += data.map(obj => obj.sum == null ? `
             <tr>
                 <td>Összesen</td>
@@ -96,6 +94,9 @@
                 <td>${obj.sum}</td>
             </tr>
             `).join('')
+        }
+        const getOptValue = () =>{
+            return document.querySelector('select').value
         }
 
     </script>
