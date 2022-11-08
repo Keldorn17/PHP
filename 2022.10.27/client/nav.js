@@ -18,6 +18,9 @@ const nav = `
             <li class="nav-item">
               <a class="nav-link" href="Leadasok.html">Leadások</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="UjTanulo.html">Új Tanuló</a>
+            </li>
           </ul>
         </div>
       </nav>

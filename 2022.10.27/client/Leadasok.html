@@ -46,13 +46,13 @@
                 <table class="table table-striped text-center">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Azonosító</th>
+                            <th>Időpont</th>
                             <th>Név</th>
                             <th>&nbsp;</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tblShow">
                         <tr>
                             <td>Összesen</td>
                             <td>0</td>
@@ -83,10 +83,13 @@
 
         const makeTbl = (nothing = null) =>{
             getData(`../server/readDiakSum.php?nev=${getOptValue()}`,addSum)
+            getOptValue() != 0 ? 
             document.querySelector('#msg').innerHTML = `a kiválasztott tanuló <span class="bold">${getOptValue()}</span> által leadott papír.`
+            :
+            document.querySelector('#msg').innerHTML = `Nincs kiválasztott tanuló.`
         }
         const createTbl = async (data) =>{
-            document.querySelector('tbody').innerHTML = data.map(obj => `
+            document.querySelector('#tblShow').innerHTML = data.map(obj => `
             <tr id="${obj.sorsz}">
                 <td>${obj.idopont}</td>
                 <td contentEditable="true" id="${obj.sorsz}td">${obj.mennyiseg}</td>
@@ -97,7 +100,7 @@
         }
         const addSum = async (data) =>{
             await getData(`../server/readDiakTbl.php?nev=${getOptValue()}`,createTbl)
-            document.querySelector('tbody').innerHTML += data.map(obj => obj.sum == null ? `
+            document.querySelector('#tblShow').innerHTML += data.map(obj => obj.sum == null ? `
             <tr>
                 <td>Összesen</td>
                 <td>0</td>
