@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>ToDo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>My Todos</h1>
+        <form>
+            <input type="text" name="content" id="content" placeholder="add new todo">
+            <button onclick="addData()" type="button" id="add">+</button>
+        </form>
+        <table></table>
+    </div>
+    <script>
+        const getData = async (url, fnName) =>{
+            const response = await fetch(url)
+            const data = await response.json()
+            fnName(data)
+        }
+        const render = (data) =>{
+            document.querySelector('table').innerHTML = data.map(obj => `
+            <tr>
+                <td><i class="fa fa-check Value${obj.state}" aria-hidden="true" onclick="changeState(this)" id="${obj.id}"></i></td>
+                <td class="v${obj.state}">${obj.content}</td>
+                <td><i class="fa fa-trash delete" aria-hidden="true" id="${obj.id}" onclick="deleteData(this)"></i></td>
+            </tr>
+            `).join('')
+        }
+        getData('../server/readTbl.php',render)
+
+        const addData = async () =>{
+            const myFormData = new FormData(document.querySelector('form'))
+            let config = {
+                method : 'POST',
+                body : myFormData
+            }
+            const response = await fetch('../server/insert.php',config)
+            const data = await response.json()
+            console.log(data.msg)
+            getData('../server/readTbl.php',render)
+            document.querySelector('#content').value = ""
+        }
+        const changeState = (obj) =>{
+            getData(`../server/Update.php?&id=${obj.id}`,render)
+        }
+        const deleteData = (obj) =>{
+            getData(`../server/Delete.php?&id=${obj.id}`,render)
+        }
+    </script>
+</body>
+</html>

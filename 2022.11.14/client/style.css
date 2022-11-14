@@ -1,0 +1,64 @@
+.container{
+    background: linear-gradient(green,lightgreen);
+    max-width: 400px;
+    height: 500px;
+    margin: auto;
+}
+#content{
+    width: 335px;
+}
+h1{
+    text-align: center;
+}
+form{
+    margin: 10px;
+}
+#add{
+    background: transparent;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+}
+input{
+    font-size: 24px;
+    border-radius: 10px;
+    border: 2px solid black;
+    outline: none;
+}
+table{
+    margin: 10px;
+    width: 380px;
+    border-radius: 10px;
+    background-color: white;
+}
+td{
+    width: 33%;
+    padding: 10px;
+    font-size: 24px;
+    text-align: center;
+}
+.btn{
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: transparent;
+    font-size: 24px;
+}
+.Value1{
+    color: green;
+    border: 3px solid green;
+}
+.Value0{
+    color: black;
+    border: 3px solid black;
+}
+.v1{
+    text-decoration: none;
+}
+.v0{
+    text-decoration: line-through;
+}
+.delete{
+    color: red;
+}
