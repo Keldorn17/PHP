@@ -1,7 +1,6 @@
 .container{
     background: linear-gradient(green,lightgreen);
     max-width: 400px;
-    height: 500px;
     margin: auto;
 }
 #content{
@@ -9,6 +8,7 @@
 }
 h1{
     text-align: center;
+    padding-top: 10px;
 }
 form{
     margin: 10px;
