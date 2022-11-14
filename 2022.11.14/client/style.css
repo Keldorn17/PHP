@@ -1,5 +1,5 @@
 .container{
-    background: linear-gradient(green,lightgreen);
+    background: linear-gradient(135deg,green,lightgreen);
     max-width: 400px;
     margin: auto;
 }
