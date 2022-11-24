@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2022. Nov 21. 07:44
--- Kiszolgáló verziója: 10.4.22-MariaDB
--- PHP verzió: 7.3.33
+-- Létrehozás ideje: 2022. Nov 24. 10:22
+-- Kiszolgáló verziója: 10.4.21-MariaDB
+-- PHP verzió: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `diafilm`
 --
+CREATE DATABASE IF NOT EXISTS `diafilm` DEFAULT CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
+USE `diafilm`;
 
 -- --------------------------------------------------------
 
@@ -865,9 +867,7 @@ INSERT INTO `kiado` (`id`, `nev`) VALUES
 (14, 'Játéktervező Intézet'),
 (15, 'Ecclesia Szövetkezet'),
 (16, 'Népművelési Minisztérium'),
-(17, 'Állami Könyvterjesztő Vállalat'),
-(20, 'egetweataí'),
-(21, 'fdhfdhfdhdf');
+(17, 'Állami Könyvterjesztő Vállalat');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -900,7 +900,7 @@ ALTER TABLE `film`
 -- AUTO_INCREMENT a táblához `kiado`
 --
 ALTER TABLE `kiado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Megkötések a kiírt táblákhoz
