@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿<?php
+  session_start();
+  echo 'Ez a token: '.session_id().'<br>';
+  print_r($_SESSION);
+?>
+<!DOCTYPE html>
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
@@ -30,6 +35,14 @@
             <a class="nav-link" href="index.php?prog=ujkiado.php">Új kiadó</a>
           </li>
         </ul>
+      </div>
+      <div class="d-flex justify-content-end">
+        <li class="nav-item p-1 m-2">
+          <a class="nav-link" href="index.php?prog=login.php">Login</a>
+        </li>
+        <li class="nav-item p-1 m-2">
+          <a class="nav-link" href="index.php?prog=ujkiado.php">Register</a>
+        </li>
       </div>
     </nav>
 

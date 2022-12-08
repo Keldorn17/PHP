@@ -27,7 +27,7 @@
     </table>
 </div>
 
-<script src="getData.js"></script>
+<script src="fetchData.js"></script>
 <script>
     const renderTbl = (data) => {
         let numb = 0
