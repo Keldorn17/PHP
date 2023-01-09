@@ -33,7 +33,8 @@
             </tr>
             `).join('')
         }
-        getData('../server/readTbl.php',render)
+        //getData('../server/readTbl.php',render)
+        getData('https://mytodoenyem.000webhostapp.com/Todo/readTbl.php',render)
 
         const addData = async () =>{
             const myFormData = new FormData(document.querySelector('form'))
@@ -41,17 +42,22 @@
                 method : 'POST',
                 body : myFormData
             }
-            const response = await fetch('../server/insert.php',config)
+            //const response = await fetch('../server/insert.php',config)
+            const response = await fetch('https://mytodoenyem.000webhostapp.com/Todo/insert.php',config)
             const data = await response.json()
             console.log(data.msg)
-            getData('../server/readTbl.php',render)
+            //getData('../server/readTbl.php',render)
+            getData('https://mytodoenyem.000webhostapp.com/Todo/readTbl.php',render)
             document.querySelector('#content').value = ""
         }
         const changeState = (obj) =>{
-            getData(`../server/Update.php?&id=${obj.id}`,render)
+            //getData(`../server/Update.php?&id=${obj.id}`,render)
+            getData(`https://mytodoenyem.000webhostapp.com/Todo/Update.php?&id=${obj.id}`,render)
         }
         const deleteData = (obj) =>{
-            getData(`../server/Delete.php?&id=${obj.id}`,render)
+            //getData(`../server/Delete.php?&id=${obj.id}`,render)
+            getData(`https://mytodoenyem.000webhostapp.com/Todo/Delete.php?&id=${obj.id}`,render)
+
         }
     </script>
 </body>
