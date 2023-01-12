@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const url = "http://localhost/PHP/2022.12.14/ReactToDO/server/"
+//const url = "http://localhost/PZ-13/2022.12.14/ReactToDO/server/"
+const url = "https://mytodoenyem.000webhostapp.com/React/"
 
 export const allTodos = async () => {
     const res = await axios.get(url+ "allTodos.php")

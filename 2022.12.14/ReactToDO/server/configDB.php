@@ -5,7 +5,7 @@
     header('Access-Control-Allow-Headers: Authorization, Content-Type, x-xsrf-token, x_csrftoken, Cache-Control, X-Requested-With');
 
     $host = "localhost";
-    $db_name = "todos";
+    $db_name = "todo";
     $db_username = "root";
     $db_password = "";
     $options = [
