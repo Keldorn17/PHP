@@ -31,7 +31,9 @@
         method: 'POST',
         body: myFormData
       }
-      insertUser('../server/insertUser.php', config, render)
+      dataUser('../server/insertUser.php', config, render)
+      user.email = false
+      user.username = false
     } 
   }
 

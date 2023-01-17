@@ -1,5 +1,6 @@
 <?php
 session_start();
+//print_r($_SESSION);
 ?>
 
 <!doctype html>
@@ -10,6 +11,7 @@ session_start();
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.101.0">
+    <script src="../server/utils.js"></script>
     <title>Jumbotron Template · Bootstrap v4.6</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/jumbotron/">
@@ -70,9 +72,22 @@ session_start();
         </div>
       </li>
     </ul>
+
+    <?php
+      if (isset($_SESSION['username'])){
+        echo "
+          <a class='nav-link btn btn-outline-light my-2 my-sm-0' href='#'>{$_SESSION['username']}</a>
+          <a class='nav-link btn btn-outline-light my-2 my-sm-0' href='index.php?prog=logout.php'>Logout</a>
+        ";
+      }else{
+        echo "
+          <a class='nav-link btn btn-outline-light my-2 my-sm-0' href='index.php?prog=login.php'>Login</a>
+          <a class='nav-link btn btn-outline-light my-2 my-sm-0' href='index.php?prog=register.php'>Register</a>
+        ";
+      }
+
+    ?>
    
-    <a class="nav-link btn btn-outline-light my-2 my-sm-0" href="index.php?prog=login.php">Login</a>
-    <a class="nav-link btn btn-outline-light my-2 my-sm-0" href="index.php?prog=register.php">Register</a>
      
    
   </div>
@@ -98,6 +113,6 @@ session_start();
       <script>window.jQuery || document.write('<script src="./assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
 
       <script src="menu.js"></script>
-      <script src="../server/utils.js"></script>
+      
   </body>
 </html>
