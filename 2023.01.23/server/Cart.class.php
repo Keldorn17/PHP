@@ -15,7 +15,14 @@ class Cart {
         $totQty = 0;
         foreach($this->cart as $item)
             $totQty += $item['quantity'];
-        return totQty;
+        return $totQty;
+    }
+    public function remove($id) {
+        foreach($this->cart as $key => $arr)
+            if (intval($arr['id']) == intval($id))
+                unset($this->cart[$key]);
+        $_SESSION['cart'] = $this->cart;
+        return TRUE;
     }
 }
 ?>

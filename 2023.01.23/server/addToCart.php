@@ -8,8 +8,8 @@
     extract($_POST);
     $product = (array) new Product($id, $name, $price, 1);
     $cart->addProduct($product);
-    $_SESSION['tot_qty'] = $cart->getQuantitiy();
-    echo $_SESSION['tot_qty'];
+    $_SESSION['totQty'] = $cart->getQuantitiy();
+    echo $_SESSION['totQty'];
 
 
 

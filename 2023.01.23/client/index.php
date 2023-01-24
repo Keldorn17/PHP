@@ -37,6 +37,7 @@ session_start();
             include $_GET["prog"];
         else
             include "home.php";
+            print_r($_SESSION);
         ?>
     </div>
 
