@@ -40,5 +40,16 @@ class Cart {
         $_SESSION['cart'] = $this->cart;
         return TRUE;
     }
+    public function updateQuantity($id, $qty) {
+        foreach($this->cart as $key => &$arr){
+            if (intval($arr['id']) == intval($id))
+                if ($qty <= 0)
+                    unset($this->cart[$key]);
+                else
+                    $arr['quantity'] = intval($qty);
+        }
+        $_SESSION['cart'] = $this->cart;
+        return TRUE;
+    }
 }
 ?>
