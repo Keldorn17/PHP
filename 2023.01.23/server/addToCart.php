@@ -9,7 +9,7 @@
     $product = (array) new Product($id, $name, $price, 1);
     $cart->addProduct($product);
     $_SESSION['totQty'] = $cart->getQuantitiy();
-    echo $_SESSION['totQty'];
+    echo $cart->getQuantitiy();
 
 
 

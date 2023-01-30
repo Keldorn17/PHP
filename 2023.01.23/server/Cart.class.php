@@ -6,11 +6,27 @@ class Cart {
         $this->cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : NULL;
     }
 
-    public function addProduct($product) {
+    /*public function addProduct($product) {
         $this->cart[] = $product;
         $_SESSION['cart'] = $this->cart;
         return TRUE;
+    }*/
+    public function addProduct($product) {
+        $flag = true;
+        if ($this->cart !== NULL){
+            foreach($this->cart as &$cartItem)
+                if ($cartItem['id'] == $product['id']){
+                    $flag = false;
+                    $cartItem['quantity'] += $product['quantity'];
+                }
+        }
+        if ($flag){
+            $this->cart[] = $product;
+        }
+        $_SESSION['cart'] = $this->cart;
+        return TRUE;
     }
+
     public function getQuantitiy() {
         $totQty = 0;
         foreach($this->cart as $item)

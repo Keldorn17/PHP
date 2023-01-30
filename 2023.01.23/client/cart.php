@@ -52,7 +52,11 @@
 
     const deleteItem = (obj) => {
         console.log(obj.id)
-        getData(`../server/deleteItem.php?id=${obj.id}`,render)
+        getData(`../server/deleteItem.php?id=${obj.id}`,renderDeleteItem)
+    }
+    const renderDeleteItem = (data) => {
+        console.log(data)
+        getData('../server/cartContent.php',render)
     }
 
 </script>

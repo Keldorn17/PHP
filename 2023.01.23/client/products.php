@@ -2,7 +2,7 @@
 	<h2 class="text-center">Termékek</h2>
 	<div class="text-right">
 		<i class="fa-sharp fa-solid fa-cart-shopping" onclick="showCart()"></i>
-		<span>0</span>
+		<span id="qty">0</span>
 	</div>
 	<div class="row justify-content-center shadow p-1 bg-light products"></div>
 </div>
@@ -24,7 +24,8 @@
 	getData('../server/read.php',showProducts)
 
 	const renderCart = (data) => {
-		console.log(data)
+		console.log('server: ', data)
+		document.querySelector('#qty').innerHTML = data
 	}
 
 	const addToCart = (obj) => {

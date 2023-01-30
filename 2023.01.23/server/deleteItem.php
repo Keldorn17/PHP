@@ -9,6 +9,6 @@
     $cart->remove($id);
 
     $_SESSION['totQty'] = $cart->getQuantitiy();
-    echo json_encode($_SESSION['cart']);
-    //echo json_encode(['msg' => 'Sikeres törlés!']);
+    //echo json_encode($_SESSION['cart']);
+    echo json_encode(['msg' => 'Sikeres törlés!']);
 ?>
