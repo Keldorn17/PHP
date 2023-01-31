@@ -15,7 +15,7 @@
   			<div class="card-body">
     			<h5 class="card-title">${obj.name}</h5>
     			<p class="card-text">${obj.description}</p>
-				<p class="card-text">Price: ${obj.price}</p>
+				<p class="card-text">Price: ${obj.price}€</p>
     			<button class="btn btn-primary w-100" onclick = "addToCart(this)" id=${obj.id} data-prod='${JSON.stringify(obj)}'>Add to Cart</button>
   			</div>
 		</div>

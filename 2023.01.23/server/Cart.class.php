@@ -51,5 +51,11 @@ class Cart {
         $_SESSION['cart'] = $this->cart;
         return TRUE;
     }
+    public function totalPrice() {
+        $tot = 0;
+        foreach($this->cart as $item)
+            $tot += $item['quantity'] * $item['price'];
+        return $tot;
+    }
 }
 ?>
