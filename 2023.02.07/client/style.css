@@ -1,0 +1,6 @@
+body{
+    background: linear-gradient(blue, aqua);
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    height: 100vh;
+}
