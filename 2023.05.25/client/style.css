@@ -1,0 +1,8 @@
+.container{
+    max-width: 1200px;
+    background-image: linear-gradient(rgba(237, 239, 240, 0.547),rgba(249, 251, 251, 0.548)), url('./images/background_circuits2019.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
